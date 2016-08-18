@@ -1,0 +1,54 @@
+
+<div class="full-width">
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                   <li><a href="index.html">Home</a></li>
+                   <li class="active">My Wishlist</li>
+               </ul>
+            </div>
+            <div class="col-xs-6">
+               <h3>My Wishlist</h3>
+            </div>
+            <div class="col-xs-6" ng-if="!emptyWishlist">
+                <p style="padding:5px;"></p>
+                 <button class="btn btn-primary pull-right"
+                         type="button"><a ui-sref="app.request">Request a Party</a>
+                </button>
+                 <!-- <button ng-click="toggleDelete()" class="btn btn-xs btn-success"
+                    type="button">
+                    {{showDelete ? 'Hide Delete Button':'Show Delete Button'}}
+                </button> -->   
+            </div>
+        </div>
+        <div class="row row-content">
+            <div class="col-xs-12" ng-if="!showMenu">
+                <h3>{{message}}</h3>
+            </div>
+            <div class="row" ng-repeat="dish in dishes">
+                <div class="col-xs-1">
+                    <button ng-click="deleteFavorite(dish._id)" class="btn btn-xs btn-danger pull-right"
+                    type="button">
+                          <i class="fa fa-remove"></i>
+                        </button>
+                </div>
+                <div class=col-xs-3>
+                    <a ui-sref="app.dishdetails({id: dish.id})">
+                     <img class="pull-left img-responsive" style="max-width: 70%" ng-src={{dish.image}} alt={{dish.name}}>
+                    </a>
+                </div>
+                <div class="col-xs-3">
+                    <h4>{{dish.name}}</h4>
+                    <span class="badge">{{dish.price/100 | currency:"R"}}</span>
+                </div>
+                <div class=col-xs-5>
+                        <label class="sr-only" for="qty">Qty</label>
+                        <input type="number" class="form-control input-sm" id="qty" 
+                           placeholder="Qty" >
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>  

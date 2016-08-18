@@ -1,0 +1,146 @@
+<div class="full-width">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+               <ul class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a ui-sref="app.favorites">My Wishlist</a></li>
+                    <li class="active">Request</li>
+               </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+            <h4>Items Requested</h4>
+            <p>Thank you for your interest in Party Nest.  We will review the request details and required date as soon as possible and provide feedback. Please note that the booking is not finalised until we have confirmed that the requested date is available.</p>
+            <p>Items populated from wishlist, add items to wishlist if needed.</p>
+            </div>
+            <div class="col-xs-12">
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Unit Price</th>
+                    <th>Qty</th>
+                    <th>Price</th>    
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Minion Box</td>
+                <td>R25.00</td>
+                <td>5</td>
+                <td>R125.00</td> 
+            </tr>
+            <tr>
+                <td>Minion Banner</td>
+                <td>R100.00</td>
+                <td>2</td>
+                <td>R200.00</td>             
+            </tr>
+            </tbody>
+            </table>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-xs-12">
+                <h4>Event Details</h4>
+            </div>
+        </div>
+        <div class="row" ng-controller="RequestController">
+        <div class="col-xs-12 col-sm-9">
+            <form class="form-horizontal" role="form"  name="requestForm" 
+                    ng-submit="doRequest()" novalidate>
+                    <div class="form-group" ng-class="{ 'has-error' : requestForm.firstname.$error.required && !requestForm.firstname.$pristine }">
+                        <label for="eventDate" class="col-sm-2 control-label">Date Needed</label>
+                        <div class="col-sm-10">
+                        <input type="date" class="form-control input-sm" id="eventDate" placeholder="Event Date" required>
+                        <span ng-show="requestForm.eventDate.$error.required && !requestForm.eventDate.$pristine" 
+                              class="help-block">The event date is required.</span>
+                        </div>
+                    </div>
+                    <div class="form-group" >
+                        <label for="deliveryChannel" class="col-sm-2 control-label">Delivery</label>
+                        <div class="col-sm-2">
+                            <select class="form-control" id="deliveryChannel">
+                            <option>Collect</option>
+                            <option>Courier</option>
+                            <option>Mail</option>
+                            <option>Electronic</option>
+                        </select>
+                        </div>
+                       <div class="col-sm-8">
+                           <textarea class="form-control input-sm" id="deliveryAddress" name="deliveryAddress" placeholder="Delivery address for courier or mail" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="">
+                        <h4>Customisation Details</h4>
+                    </div>
+                    <div class="form-group" >
+                        <label for="birthdayName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-6">
+                        <input type="text" class="form-control input-sm" id="birthdayName" name="birthdayName">
+                        </div>
+                       <div class="col-sm-4">
+                           <label for="birthdayAge" class="sr-only">Age</label>
+                           <input type="number" placeholder="Age" class="form-control input-sm" id="birthdayAge" name="birthdayAge" min="1" max="99">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="customMsg" class="col-sm-2 control-label">Message</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" id="customMsg" placeholder="Thank you for sharing the day with me" name="feedback" rows="2"></textarea>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <label for="specialInstr" class="sr-only">Special instructions or other items</label>
+                        <div class="col-xs-12">
+                            <textarea class="form-control" id="specialInstr" placeholder="Enter any special instructions or other items requested" name="specialInstr" rows="4"></textarea>
+                        </div>
+                    </div> 
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary btn-sm" ng-disabled="requestForm.$invalid">Submit</button>
+                            <button type="button" class="btn btn-default btn-sm" ng-click=closeThisDialog("Cancel")>Cancel</button>
+                        </div>
+                    </div>
+                </form>
+       <!--     <form ng-submit="doRegister()">
+ 
+                <div class="form-group">
+                    <label class="sr-only" for="firstname">First Name</label>
+                    <input type="text" class="form-control input-sm" id="firstname" placeholder="First Name" ng-model="registration.firstname">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="lastname">Last Name</label>
+                    <input type="text" class="form-control input-sm" id="lastname" placeholder="Last Name" ng-model="registration.lastname">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="lastname">Telephone</label>
+                    <input type=tel class="form-control input-xs" id="telno" placeholder="Telephone" ng-model="registration.telno">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="username">Username (e-mail address)</label>
+                    <input type="email" class="form-control input-sm" id="username" placeholder="User id  (E-mail)" ng-model="registration.username">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="username2">Repeat e-mail address</label>
+                    <input type="email" class="form-control input-sm" id="username2" placeholder="Repeat e-mail" ng-model="registration.username2">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input type="password" class="form-control input-sm" id="password" placeholder="Password" ng-model="registration.password">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="registration.rememberMe"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-info btn-sm">Register</button>
+                <button type="button" class="btn btn-default btn-sm" ng-click=closeThisDialog("Cancel")>Cancel</button>
+            </form> -->
+        </div>
+        </div>
+    </div>
+</div>
+
